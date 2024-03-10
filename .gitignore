@@ -2,5 +2,5 @@ models/__pycache__/
 models/engine/__pycache__/
 tests/test_models/__pycache__/
 file.json
-root_test_*
+root_test*
 */__pycache__/*
