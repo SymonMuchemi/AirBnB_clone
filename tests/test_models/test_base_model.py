@@ -16,6 +16,9 @@ class TestBaseModel(TestCase):
         self.assertIsNotNone(self.baseModel.id)
         
     def test_str(self):
+        """test that the __str__ method returns the correct description
+        of the instance model
+        """
         class_name = "BaseModel"
         model_id = self.baseModel.id
         model_dict = self.baseModel.__dict__
@@ -24,3 +27,12 @@ class TestBaseModel(TestCase):
         
         self.assertEqual(model_string_rep, self.baseModel.__str__())
         
+    def test_to_dict(self):
+        
+        model_dict = self.baseModel.to_dict()
+        self.assertIsInstance(model_dict, dict)
+        self.assertIsNotNone(model_dict)
+        self.assertIsNotNone(model_dict["__class__"])
+        self.assertIsNotNone(model_dict["id"])
+        self.assertIsNotNone(model_dict["created_at"])
+        self.assertIsNotNone(model_dict["updated_at"])
