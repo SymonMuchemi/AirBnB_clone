@@ -81,7 +81,59 @@ class HBNBCommand(cmd.Cmd):
             print(obj)
         else:
             print(self.no_instance)
+            
+    def do_destroy(self, args):
+        """deletes an instance based on the class name and id"""
+        if not args.strip():
+            print(self.missing_class)
+            return
 
+        if not args:
+            print(self.missing_class)
+            return
+
+        if len(args) < 2:
+            print(self.missing_id)
+            return
+
+        class_name = args.split()[0]
+        obj_id = args.split()[1]
+
+        if class_name not in self.list_of_classes:
+            print(self.non_existant_class)
+            return
+
+        if not obj_id:
+            print(self.missing_id)
+            return
+
+        instance_objs = storage.all()
+        key = "{}.{}".format(args[0], args[1])
+        req_instance = instance_objs.get(key, None)
+        if req_instance is None:
+            print("** no instance found **")
+            return
+
+        del instance_objs[key]
+        storage.save()
+        
+    def do_all(self, arg):
+        """Prints all the instances saved"""
+        all_instances = storage.all()
+        args = arg.split()
+        
+        if len(args) < 1:
+            print(["{}".format(str(v)) for _, v in all_instances.items()])
+            return
+        
+        if args[0] not in self.list_of_classes:
+            print(self.missing_class)
+            return
+        
+        else:
+            print([f"{v}"]
+                  for _, v in all_instances.items() if type(v).__name__ == args[0])
+            return
 
 
 if __name__ == '__main__':
