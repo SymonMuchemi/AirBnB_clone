@@ -32,55 +32,55 @@ class HBNBCommand(cmd.Cmd):
         """Ends the command line"""
         return True
 
-    # def do_create(self, args):
-    #     """Create objects"""
-    #     # Check if args contains only whitespace
-    #     if not args.strip():
-    #         print(self.missing_class)
-    #         return
+    def do_create(self, args):
+        """Create objects"""
+        # Check if args contains only whitespace
+        if not args.strip():
+            print(self.missing_class)
+            return
 
-    #     class_obj = args.split()[0]
+        class_obj = args.split()[0]
 
-    #     if class_obj in self.list_of_classes:
-    #         obj_instance = eval(class_obj)()
-    #         obj_instance.save()
-    #         print(obj_instance.id)
-    #     else:
-    #         print(self.non_existant_class)
+        if class_obj in self.list_of_classes:
+            obj_instance = eval(class_obj)()
+            obj_instance.save()
+            print(obj_instance.id)
+        else:
+            print(self.non_existant_class)
 
-    # def do_show(self, args):
-    #     """prints the string rep of an object with the given id"""
-    #     # Check if args contains only whitespace
-    #     if not args.strip():
-    #         print(self.missing_class)
-    #         return
+    def do_show(self, args):
+        """prints the string rep of an object with the given id"""
+        # Check if args contains only whitespace
+        if not args.strip():
+            print(self.missing_class)
+            return
 
-    #     if not args:
-    #         print(self.missing_class)
-    #         return
+        if not args:
+            print(self.missing_class)
+            return
 
-    #     if len(args) < 2:
-    #         print(self.missing_id)
-    #         return
+        if len(args) < 2:
+            print(self.missing_id)
+            return
 
-    #     class_name = args.split()[0]
-    #     obj_id = args.split()[1]
+        class_name = args.split()[0]
+        obj_id = args.split()[1]
 
-    #     if class_name not in self.list_of_classes:
-    #         print(self.non_existant_class)
-    #         return
+        if class_name not in self.list_of_classes:
+            print(self.non_existant_class)
+            return
 
-    #     if not obj_id:
-    #         print(self.missing_id)
-    #         return
+        if not obj_id:
+            print(self.missing_id)
+            return
 
-    #     obj_key = f"{class_name}.{obj_id}"
-    #     obj = storage.all().get(obj_key)
+        obj_key = f"{class_name}.{obj_id}"
+        obj = storage.all().get(obj_key)
 
-    #     if obj:
-    #         print(obj)
-    #     else:
-    #         print(self.no_instance)
+        if obj:
+            print(obj)
+        else:
+            print(self.no_instance)
 
 
 
