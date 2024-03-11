@@ -51,7 +51,7 @@ class FileStorage():
         file exists; otherwise, does nothing
         """
         current_classes = {
-                            'BaseModel': BaseModel, 
+                            'BaseModel': BaseModel,
                         }
 
         if not os.path.exists(FileStorage.__file_path):

@@ -33,14 +33,14 @@ class BaseModel:
             str: short representation
         """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
-        
+
     def save(self):
         """updates the 'updated_at' attribute to the current time
         """
         from models import storage
         self.updated_at = datetime.now()
         storage.save()
-        
+
     def to_dict(self):
         """converts 'created_at' and 'updated_at' attributes to ISO format,
         adds a __class__ attribute to the instance dictionary
@@ -51,5 +51,5 @@ class BaseModel:
         self.__dict__["__class__"] = self.__class__.__name__
         self.created_at = self.created_at.strftime(date_format)
         self.updated_at = self.updated_at.strftime(date_format)
-        
+
         return self.__dict__
