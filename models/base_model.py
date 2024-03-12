@@ -5,6 +5,7 @@ from datetime import datetime
 
 date_format = "%Y-%m-%dT%H:%M:%S.%f"
 
+
 class BaseModel:
     """parent model
     """
