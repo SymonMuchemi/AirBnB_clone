@@ -50,7 +50,10 @@ class BaseModel:
             dict: the instance dictionary
         """
         self.__dict__["__class__"] = self.__class__.__name__
-        self.created_at = self.created_at.strftime(date_format)
-        self.updated_at = self.updated_at.strftime(date_format)
+        if not isinstance(self.created_at, str):
+            self.created_at = self.created_at.strftime(date_format)
+        
+        if not isinstance(self.updated_at, str):
+            self.updated_at = self.updated_at.strftime(date_format)
 
         return self.__dict__
